@@ -142,6 +142,10 @@ peis.run('data')
 peis.save_data(save_path_peis)
 ```
 
+### CV and PEIS options
++ **Voltage and current range:** CV and PEIS accept optional `voltage_range` and `current_range` (use `ec_lib.ERange` and `ec_lib.IRange`) to fix the measurement ranges.
++ **Averaging:** PEIS supports N-point averaging per frequency via the `repeat` parameter (e.g. `repeat`: 5 or 10 for better noise averaging). CV supports hardware averaging on/off only via the `average` parameter (True/False).
+
 ## Extras
 + `pandas`: Use [`pandas`](https://pandas.pydata.org/) to save data.
 

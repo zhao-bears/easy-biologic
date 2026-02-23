@@ -3,7 +3,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "easy-biologic"
+name = "puda-biologic"
 dynamic = ["version"]
 description = "An easy library for controlling BioLogic devices."
 readme = "README.md"

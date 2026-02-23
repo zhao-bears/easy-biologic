@@ -734,10 +734,13 @@ class PEIS(BiologicProgram):
             sweep: Defines whether the spacing between frequencies is logarithmic
                 ('log') or linear ('lin'). [Default: 'log']
             repeat: Number of times to repeat the measurement and average the values
-                for each frequency. [Default: 1]
+                for each frequency (N-point averaging). Use 5–10 for better noise
+                averaging. [Default: 1]
             correction: Drift correction. [Default: False]
             wait: Adds a delay before the measurement at each frequency. The delay
                 is expressed as a fraction of the period. [Default: 0]
+            voltage_range: Optional. Fix voltage range; use ec_lib.ERange.
+            current_range: Optional. Fix current range; use ec_lib.IRange.
         :param **kwargs: Parameters passed to BiologicProgram.
         """
         # set sweep to false if spacing is logarithmic
@@ -1084,14 +1087,17 @@ class CV(BiologicProgram):
         :param device: BiologicDevice.
         :param params: Program parameters.
             Params are
-            start: Dictionary of start voltages keyed by channels. Ei in the figure [Defualt: 0]
+            start: Dictionary of start voltages keyed by channels. Ei in the figure [Default: 0]
             end: Dictionary of end voltages keyed by channels. Boundary voltage in forward scan.
-                E1 in the figure [Defualt: 0.5]
-            E2: Boundary voltage in backward scan. E2 in the figure [Defualt:0]
-            Ef: End voltage in the final cycle scan [Defualt: 0]
+                E1 in the figure [Default: 0.5]
+            E2: Boundary voltage in backward scan. E2 in the figure [Default: 0]
+            Ef: End voltage in the final cycle scan [Default: 0]
             step: Voltage step. dEN/1000. [Default: 0.01]
             rate: Scan rate in V/s. [Default: 0.01]
-            average: Average over points. [Default: False]
+            average: Average over points (hardware on/off only). [Default: False]
+                For N-point averaging per frequency, use PEIS with the repeat parameter.
+            voltage_range: Optional. Fix voltage range; use ec_lib.ERange (e.g. v2_5, v5, v10, AUTO).
+            current_range: Optional. Fix current range; use ec_lib.IRange (e.g. m1, m10, m100, AUTO).
         :param **kwargs: Parameters passed to BiologicProgram.
         """
         """

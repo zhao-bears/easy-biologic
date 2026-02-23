@@ -184,7 +184,7 @@ Contains basic implementations of BiologicPrograms.
 + **sweep:** Defines whether the spacing between frequencies is logarithmic ('log') or linear ('lin'). 
 [Default: 'log'] 
 
-+ **repeat:** Number of times to repeat the measurement and average the values for each frequency. 
++ **repeat:** Number of times to repeat the measurement and average the values for each frequency (N-point averaging). Use 5–10 for better noise averaging. 
 [Default: 1]
 
 + **correction:** Drift correction. 
@@ -192,6 +192,10 @@ Contains basic implementations of BiologicPrograms.
 
 + **wait:** Adds a delay before the measurement at each frequency. The delay is expressed as a fraction of the period. 
 [Default: 0]
+
++ **voltage_range:** Optional. Fix voltage range; use ec_lib.ERange.
+
++ **current_range:** Optional. Fix current range; use ec_lib.IRange.
     
 #### GEIS
 Performs a Galvanostatic Electrochemical Impedance Spectroscopy
@@ -252,8 +256,12 @@ Performs a CV scan.
 + **rate:** Scan rate in V/s. 
 [Default: 0.01]
 
-+ **average:** Average over points. 
++ **average:** Average over points (hardware on/off only). For N-point averaging use PEIS with the repeat parameter. 
 [Default: False]
+
++ **voltage_range:** Optional. Fix voltage range; use ec_lib.ERange.
+
++ **current_range:** Optional. Fix current range; use ec_lib.IRange.
 
 
 #### MPP_Tracking
