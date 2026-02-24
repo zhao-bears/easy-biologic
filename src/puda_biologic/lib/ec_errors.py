@@ -95,9 +95,14 @@ class EcError(Exception):
                 raise ValueError(f"Unknown error value {value}.")
 
             out = f"{code} ({value}): {message}"
-
+            self.value = value
+            self.code = code
+            self.message = message
         else:
             # no error value
             out = ""
+            self.value = None
+            self.code = code
+            self.message = message
 
         super(EcError, self).__init__(out)
