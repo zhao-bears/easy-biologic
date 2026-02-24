@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "puda-biologic"
-version = "0.0.6"
+version = "0.0.8"
 description = "An easy library for controlling BioLogic devices."
 readme = "README.md"
 license = "MIT OR Apache-2.0"

@@ -17,7 +17,7 @@ def technique_directory(version=None):
         # get default version
         version = default_techniques_version()
 
-    pkg_resources = importlib.resources.files("easy_biologic")
+    pkg_resources = importlib.resources.files("puda_biologic")
     return pkg_resources.joinpath("include", "techniques", version)
 
 
@@ -25,7 +25,7 @@ def default_techniques_version():
     """
     :returns: Default version of techniques.
     """
-    pkg_resources = importlib.resources.files("easy_biologic")
+    pkg_resources = importlib.resources.files("puda_biologic")
     version_file = pkg_resources.joinpath("include", "data", "techniques_version.json")
     try:
         with open(version_file) as vf:
