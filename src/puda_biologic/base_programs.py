@@ -1,5 +1,4 @@
 import os
-import math
 import time
 from datetime import datetime as dt
 import asyncio
@@ -394,7 +393,7 @@ class CA(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("ca", params, retrieve_data=retrieve_data)
+        _ = self._run("ca", params, retrieve_data=retrieve_data)
 
     def update_voltages(self, voltages, durations=None, vs_initial=None):
         """Update voltage and duration parameters
@@ -519,7 +518,7 @@ class CP(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("cp", params, retrieve_data=retrieve_data)
+        _ = self._run("cp", params, retrieve_data=retrieve_data)
 
     def update_currents(self, currents, durations=None, vs_initial=None):
         """Update current and duration parameters.
@@ -666,7 +665,7 @@ class CALimit(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("calimit", params, retrieve_data=retrieve_data)
+        _ = self._run("calimit", params, retrieve_data=retrieve_data)
 
     def update_voltages(self, voltages, durations=None, vs_initial=None):
         """Update voltage and duration parameters.
@@ -892,7 +891,7 @@ class PEIS(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("peis", params, retrieve_data=retrieve_data)
+        _ = self._run("peis", params, retrieve_data=retrieve_data)
 
 
 class GEIS(BiologicProgram):
@@ -1076,7 +1075,7 @@ class GEIS(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("geis", params, retrieve_data=retrieve_data)
+        _ = self._run("geis", params, retrieve_data=retrieve_data)
 
 
 class CV(BiologicProgram):
@@ -1168,11 +1167,9 @@ class CV(BiologicProgram):
         # setup scan profile ( start -> end -> start )
         params = {}
         for ch, ch_params in self.params.items():
-            """ "
             # Previously voltage_profile:
-            voltage_profile = [ ch_params[ 'start' ] ]* 5
-            voltage_profile[ 1 ] = ch_params[ 'end' ]
-            """
+            # voltage_profile = [ ch_params[ 'start' ] ]* 5
+            # voltage_profile[ 1 ] = ch_params[ 'end' ]
             voltage_profile = [
                 ch_params["start"],
                 ch_params["end"],
@@ -1199,7 +1196,7 @@ class CV(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        data = self._run("cv", params, retrieve_data=retrieve_data)
+        _ = self._run("cv", params, retrieve_data=retrieve_data)
 
 
 MPP_Powers = namedtuple("MPP_Powers", ["hold", "probe"])
@@ -1502,12 +1499,12 @@ class MPP(MPP_Tracking):
             os.makedirs(data)
 
         ocv_loc = "voc" if by_channel else "voc.csv"
-        cv = "cv" if by_channel else "cv.csv"
+        cv_filename = "cv" if by_channel else "cv.csv"
         mpp_loc = "mpp" if by_channel else "mpp.csv"
 
         mpp_loc = os.path.join(data, mpp_loc)
         ocv_loc = os.path.join(data, ocv_loc)
-        cv = os.path.join(data, cv_loc)
+        cv_loc = os.path.join(data, cv_filename)
 
         if self.autoconnect is True:
             self._connect()
@@ -1515,7 +1512,7 @@ class MPP(MPP_Tracking):
         # --- init ---
         self.voc = self._run_ocv(ocv_loc, by_channel=by_channel)  # voc
         self.v_mpp = self._run_cv(
-            self.voc, cv_loc, by_channel=by_channel, cv_params=cv_params
+            self.voc, cv_loc, by_channel=by_channel, cv_params=cv
         )  # cv
 
         for ch, ch_params in self.params.items():
