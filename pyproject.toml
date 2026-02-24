@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "puda-biologic"
-dynamic = ["version"]
+version = "0.0.6"
 description = "An easy library for controlling BioLogic devices."
 readme = "README.md"
 license = "MIT OR Apache-2.0"
@@ -29,8 +29,5 @@ Issues = "https://github.com/bicarlsen/easy-biologic/issues"
 Source = "https://github.com/bicarlsen/easy-biologic"
 Homepage = "https://github.com/bicarlsen/easy-biologic"
 
-[tool.hatch.version]
-path = "src/easy_biologic/__about__.py"
-
 [tool.hatch.build.targets.wheel]
-packages = ["src/easy_biologic"]
+packages = ["src/puda_biologic"]
