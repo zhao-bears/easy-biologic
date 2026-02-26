@@ -393,7 +393,7 @@ class CA(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("ca", params, retrieve_data=retrieve_data)
+        self._run("ca", params, retrieve_data=retrieve_data)
 
     def update_voltages(self, voltages, durations=None, vs_initial=None):
         """Update voltage and duration parameters
@@ -518,7 +518,7 @@ class CP(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("cp", params, retrieve_data=retrieve_data)
+        self._run("cp", params, retrieve_data=retrieve_data)
 
     def update_currents(self, currents, durations=None, vs_initial=None):
         """Update current and duration parameters.
@@ -665,7 +665,7 @@ class CALimit(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("calimit", params, retrieve_data=retrieve_data)
+        self._run("calimit", params, retrieve_data=retrieve_data)
 
     def update_voltages(self, voltages, durations=None, vs_initial=None):
         """Update voltage and duration parameters.
@@ -891,7 +891,7 @@ class PEIS(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("peis", params, retrieve_data=retrieve_data)
+        self._run("peis", params, retrieve_data=retrieve_data)
 
 
 class GEIS(BiologicProgram):
@@ -1075,7 +1075,7 @@ class GEIS(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("geis", params, retrieve_data=retrieve_data)
+        self._run("geis", params, retrieve_data=retrieve_data)
 
 
 class CV(BiologicProgram):
@@ -1125,6 +1125,7 @@ class CV(BiologicProgram):
             "N_Cycles": 0,
             "Begin_measuring_I": 0.5,
             "End_measuring_I": 1,
+            "current_range": ecl.IRange.m10,
         }
         channels = kwargs["channels"] if ("channels" in kwargs) else None
         params = set_defaults(params, defaults, channels)
@@ -1196,7 +1197,7 @@ class CV(BiologicProgram):
             params[ch].update(map_hardware_params(ch_params, by_channel=False))
 
         # run technique
-        _ = self._run("cv", params, retrieve_data=retrieve_data)
+        self._run("cv", params, retrieve_data=retrieve_data)
 
 
 MPP_Powers = namedtuple("MPP_Powers", ["hold", "probe"])

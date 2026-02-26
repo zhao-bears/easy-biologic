@@ -17,6 +17,8 @@ class CV(Enum):
     N_Cycles = int
     Begin_measuring_I = float
     End_measuring_I = float
+    E_Range = int
+    I_Range = int
 
 
 class CA(Enum):
